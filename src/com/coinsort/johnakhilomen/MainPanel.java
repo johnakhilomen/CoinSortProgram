@@ -10,6 +10,7 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 public class MainPanel extends JPanel{
 	private String[] _buttonNames;
@@ -117,8 +118,34 @@ public class MainPanel extends JPanel{
 	}
 
 	protected void coinCalculator() {
-		// TODO Auto-generated method stub
+		/*var oPane = new OptionPaneDialog("Enter value", null, true);
+		var dialog = oPane.getDialog();
+		dialog.setVisible(true);
+		String result = testCoinSorter.coinSorter.coinCalculator(Integer.parseInt(oPane.getInputValue().toString()), 50);
 		
+		
+		
+		*/
+		
+		var coinCalcPanel = new JPanel();
+		coinCalcPanel.setLayout(new GridLayout(2,2));
+		JLabel coinValue = new JLabel("Enter value: ");
+		JTextField coinValueTextField = new JTextField();
+		JLabel coinType = new JLabel("Enter coin type: ");
+		JTextField coinTypeTextField = new JTextField();
+		
+		coinCalcPanel.add(coinValue);
+		coinCalcPanel.add(coinValueTextField);
+		coinCalcPanel.add(coinType);
+		coinCalcPanel.add(coinTypeTextField);
+		var oPane1 = new OptionPaneDialog("Coin Calculator", coinCalcPanel, false);
+		var dialog1 = oPane1.getDialog();
+		
+		dialog1.setVisible(true);
+		
+		String result = testCoinSorter.coinSorter.coinCalculator(Integer.parseInt(coinValueTextField.getText()), Integer.parseInt(coinTypeTextField.getText()) );
+		JOptionPane.showMessageDialog(this, result);
+	
 	}
 	
 
