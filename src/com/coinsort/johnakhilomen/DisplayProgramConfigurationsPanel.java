@@ -42,18 +42,16 @@ public class DisplayProgramConfigurationsPanel extends JPanel{
 					}
 					else if(e.getActionCommand() == "Set currency")
 					{
-						System.out.println("Multiple coin calculators...");
 						setCurrency();
 						
 					} 
 					else if(e.getActionCommand() == "Set minimum coin input value")
 					{
-						System.out.println("Print coin lists...");
-						
+						setMinCoinInput();
 					} 
 					else if(e.getActionCommand() == "Set maximum coin input value")
 					{
-						System.out.println("Set details");
+						setMaxCoinInput();
 					} 
 					else if(e.getActionCommand() == "Return to main menu")
 					{
@@ -65,6 +63,25 @@ public class DisplayProgramConfigurationsPanel extends JPanel{
 			});
 			add(button);
 		}
+		
+	}
+
+	protected void setMaxCoinInput() {
+		var oPane = new OptionPaneDialog("Set maximum coin input value", null, true);
+		var dialog = oPane.getDialog();
+		dialog.setVisible(true);
+		testCoinSorter.coinSorter.setMaxCoinIn(Integer.parseInt(oPane.getInputValue().toString()));
+		testCoinSorter.mainPanel._maxInputLabel.setText("Maximum input value: "+testCoinSorter.coinSorter.getMaxCoinIn());
+	
+		
+	}
+
+	protected void setMinCoinInput() {
+		var oPane = new OptionPaneDialog("Set minimum coin input value", null, true);
+		var dialog = oPane.getDialog();
+		dialog.setVisible(true);
+		testCoinSorter.coinSorter.setMinCoinIn(Integer.parseInt(oPane.getInputValue().toString()));
+		testCoinSorter.mainPanel._minInputLabel.setText("Minimum input value: "+testCoinSorter.coinSorter.getMinCoinIn());
 		
 	}
 

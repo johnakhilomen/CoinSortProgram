@@ -1,5 +1,6 @@
 package com.coinsort.johnakhilomen;
 
+import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,11 +14,14 @@ import javax.swing.JPanel;
 public class MainPanel extends JPanel{
 	private String[] _buttonNames;
 	public static JLabel _currencyLabel = new JLabel("");
+	public static JLabel _minInputLabel = new JLabel("");
+	public static JLabel _maxInputLabel = new JLabel("");
 	public static JDialog subMenudialog;
 	public MainPanel(String[] buttonNames)
 	{
 		_buttonNames = buttonNames;
 		setLayout();
+		setupLabels();
 		setupButtons();
 	}
 
@@ -26,11 +30,19 @@ public class MainPanel extends JPanel{
 		setLayout(new GridLayout(3,3));  
 	}
 	
+	private void setupLabels()
+	{
+		_currencyLabel.setForeground(Color.red);
+		_minInputLabel.setForeground(Color.red);
+		_maxInputLabel.setForeground(Color.red);
+		add(_currencyLabel);
+		add(_minInputLabel);
+		add(_maxInputLabel);
+	}
+	
 	public void setupButtons()
 	{
-		add(_currencyLabel);
-		add(new JLabel(""));
-		add(new JLabel(""));
+		
 		for (int i = 0; i< _buttonNames.length; i++)
 		{
 			JButton button = new JButton(_buttonNames[i]);
