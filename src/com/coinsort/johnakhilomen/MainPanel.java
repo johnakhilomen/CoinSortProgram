@@ -6,11 +6,13 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class MainPanel extends JPanel{
 	private String[] _buttonNames;
+	public static JLabel _currencyLabel = new JLabel("");
 	public static JDialog subMenudialog;
 	public MainPanel(String[] buttonNames)
 	{
@@ -26,6 +28,9 @@ public class MainPanel extends JPanel{
 	
 	public void setupButtons()
 	{
+		add(_currencyLabel);
+		add(new JLabel(""));
+		add(new JLabel(""));
 		for (int i = 0; i< _buttonNames.length; i++)
 		{
 			JButton button = new JButton(_buttonNames[i]);
@@ -91,8 +96,7 @@ public class MainPanel extends JPanel{
 
 	protected void printCoinList() {
 		// TODO Auto-generated method stub
-		System.out.println("Currency set: " +testCoinSorter.coinSorter.getCurrency());
-		
+		//_currencyLabel.setText(testCoinSorter.coinSorter.getCurrency());
 	}
 
 	protected void multipleCoinCalculator() {

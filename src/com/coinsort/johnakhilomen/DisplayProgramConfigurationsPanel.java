@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -72,12 +73,12 @@ public class DisplayProgramConfigurationsPanel extends JPanel{
 		var dialog = oPane.getDialog();
 		dialog.setVisible(true);
 		testCoinSorter.coinSorter.setCurrency(oPane.getInputValue().toString());
+		testCoinSorter.mainPanel._currencyLabel.setText("Currency: "+testCoinSorter.coinSorter.getCurrency());
 	}
 
 	protected void returnToMainMenu() {
-		// TODO Auto-generated method stub
-		MainPanel.subMenudialog.hide();
-		testCoinSorter.mainDialog.show();
+		MainPanel.subMenudialog.setVisible(false);
+		testCoinSorter.mainDialog.setVisible(true);
 	}
 	
 }

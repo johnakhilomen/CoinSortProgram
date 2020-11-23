@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 
 public class testCoinSorter {
 
+	public static MainPanel mainPanel; 
 	public static JDialog mainDialog;
 	public static CoinSorter coinSorter; 
 	public static void main(String[] args) {
@@ -85,8 +86,8 @@ public class testCoinSorter {
 		System.out.println(p100);
 		String[] buttonNames = new String[] {"Coin calculator", "Multiple coin calculators", "Print coin list", "Set details",
 				"Display program configurations", "Quit the program"};
-		
-		mainDialog = new OptionPaneDialog("Shopping List Program", new MainPanel(buttonNames), false).getDialog();
+		mainPanel = new MainPanel(buttonNames);
+		mainDialog = new OptionPaneDialog("Shopping List Program", mainPanel, false).getDialog();
 		mainDialog.show();
 		
 		//dialog.dispose();
