@@ -4,18 +4,21 @@ import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-public class WinDialog extends JOptionPane
+public class OptionPaneDialog extends JOptionPane
 {
 	private String _title;
-	public WinDialog(String title, JPanel panel)
+	public OptionPaneDialog(String title, JPanel panel, boolean isInput)
 	{
+		_title = title;
 		this.setMessageType(JOptionPane.INFORMATION_MESSAGE );
-		//this.setMessage(new Panel(buttonNames));
 		this.setMessage(panel);
+		this.setWantsInput(isInput);
 	}
 	
 	public JDialog getDialog()
 	{
-		return this.createDialog(null, _title);
+		JDialog dialog =  this.createDialog(null, _title);
+		dialog.setAlwaysOnTop(true);
+		return dialog;
 	}
 }

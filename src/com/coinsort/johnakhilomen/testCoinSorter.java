@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 public class testCoinSorter {
 
 	public static JDialog mainDialog;
+	public static CoinSorter coinSorter; 
 	public static void main(String[] args) {
 		
 		  int p200 = 0;
@@ -24,7 +25,7 @@ public class testCoinSorter {
 		  
 		Integer[] intArr = new Integer[] {200,100,50,30,10};
 		
-		CoinSorter coinSorter = new CoinSorter("P", 0, 562, new ArrayList<Integer>(Arrays.asList(intArr)));
+		coinSorter = new CoinSorter("P", 0, 562, new ArrayList<Integer>(Arrays.asList(intArr)));
 		System.out.println(coinSorter.multiCoinCalculator(562, 50));
 		
 		/*coinSorter.toCoins(562, new ArrayList<Integer>(Arrays.asList(intArr)));
@@ -85,7 +86,7 @@ public class testCoinSorter {
 		String[] buttonNames = new String[] {"Coin calculator", "Multiple coin calculators", "Print coin list", "Set details",
 				"Display program configurations", "Quit the program"};
 		
-		mainDialog = new WinDialog("Shopping List Program", new MainPanel(buttonNames)).getDialog();
+		mainDialog = new OptionPaneDialog("Shopping List Program", new MainPanel(buttonNames), false).getDialog();
 		mainDialog.show();
 		
 		//dialog.dispose();

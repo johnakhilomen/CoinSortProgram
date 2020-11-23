@@ -5,11 +5,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class DisplayProgramConfigurationsPanel extends JPanel{
 
 	private String[] _buttonNames;
+	//public static String currency;
 	public DisplayProgramConfigurationsPanel(String[] buttonNames)
 	{
 		_buttonNames = buttonNames;
@@ -19,7 +22,7 @@ public class DisplayProgramConfigurationsPanel extends JPanel{
 
 	private void setLayout()
 	{
-		setLayout(new GridLayout(3,3));  
+		setLayout(new GridLayout(2,2));  
 	}
 	
 	public void setupButtons()
@@ -39,6 +42,7 @@ public class DisplayProgramConfigurationsPanel extends JPanel{
 					else if(e.getActionCommand() == "Set currency")
 					{
 						System.out.println("Multiple coin calculators...");
+						setCurrency();
 						
 					} 
 					else if(e.getActionCommand() == "Set minimum coin input value")
@@ -61,6 +65,13 @@ public class DisplayProgramConfigurationsPanel extends JPanel{
 			add(button);
 		}
 		
+	}
+
+	protected void setCurrency() {
+		var oPane = new OptionPaneDialog("Currency", null, true);
+		var dialog = oPane.getDialog();
+		dialog.setVisible(true);
+		testCoinSorter.coinSorter.setCurrency(oPane.getInputValue().toString());
 	}
 
 	protected void returnToMainMenu() {

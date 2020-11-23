@@ -35,7 +35,6 @@ public class MainPanel extends JPanel{
 					if(e.getActionCommand() == "Coin calculator")
 					{
 						System.out.println("Coin calculator...");
-						//String item = JOptionPane.showInputDialog("Item name: ");
 						coinCalculator();
 						
 					}
@@ -58,7 +57,7 @@ public class MainPanel extends JPanel{
 					} 
 					else if(e.getActionCommand() == "Display program configurations")
 					{
-						System.out.println("Display program configurations");
+						//System.out.println("Display program configurations");
 						displayProgramConfigurations();
 					}
 					else if(e.getActionCommand() == "Quit the program")
@@ -78,12 +77,11 @@ public class MainPanel extends JPanel{
 	}
 
 	protected void displayProgramConfigurations() {
-		// TODO Auto-generated method stubs
 		String[] subMenuButtonNames = new String[] {"Set currency", "Set minimum coin input value", "Set maximum coin input value",
 		"Return to main menu"};
-		subMenudialog = new WinDialog("Set Details Sub-Menu", new DisplayProgramConfigurationsPanel(subMenuButtonNames)).getDialog();
-		testCoinSorter.mainDialog.hide();
-		subMenudialog.show();
+		subMenudialog = new OptionPaneDialog("Set Details Sub-Menu", new DisplayProgramConfigurationsPanel(subMenuButtonNames), false).getDialog();
+		testCoinSorter.mainDialog.setVisible(false);
+		subMenudialog.setVisible(true);
 	}
 
 	protected void setDetails() {
@@ -93,6 +91,7 @@ public class MainPanel extends JPanel{
 
 	protected void printCoinList() {
 		// TODO Auto-generated method stub
+		System.out.println("Currency set: " +testCoinSorter.coinSorter.getCurrency());
 		
 	}
 
