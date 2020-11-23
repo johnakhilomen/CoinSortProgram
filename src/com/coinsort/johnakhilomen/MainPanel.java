@@ -118,36 +118,51 @@ public class MainPanel extends JPanel{
 	}
 
 	protected void coinCalculator() {
-		/*var oPane = new OptionPaneDialog("Enter value", null, true);
-		var dialog = oPane.getDialog();
-		dialog.setVisible(true);
-		String result = testCoinSorter.coinSorter.coinCalculator(Integer.parseInt(oPane.getInputValue().toString()), 50);
-		
-		
-		
-		*/
-		
 		var coinCalcPanel = new JPanel();
 		coinCalcPanel.setLayout(new GridLayout(2,2));
 		JLabel coinValue = new JLabel("Enter value: ");
 		JTextField coinValueTextField = new JTextField();
 		JLabel coinType = new JLabel("Enter coin type: ");
 		JTextField coinTypeTextField = new JTextField();
-		
+		JButton submit = new JButton("Submit");
+		submit.addActionListener(new ActionListener(){  
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(!validateInput(coinValueTextField.getText()) || !validateInput(coinTypeTextField.getText()) )
+				{
+					JOptionPane.showMessageDialog(null, "Invalid input - Only integers are allowed!");
+					return;
+				}
+				String result = testCoinSorter.coinSorter.coinCalculator(Integer.parseInt(coinValueTextField.getText()), Integer.parseInt(coinTypeTextField.getText()) );
+				JOptionPane.showMessageDialog(null, result);
+			}
+		});
 		coinCalcPanel.add(coinValue);
 		coinCalcPanel.add(coinValueTextField);
 		coinCalcPanel.add(coinType);
 		coinCalcPanel.add(coinTypeTextField);
+		coinCalcPanel.add(submit);
+		
+		
+		
 		var oPane1 = new OptionPaneDialog("Coin Calculator", coinCalcPanel, false);
 		var dialog1 = oPane1.getDialog();
 		
 		dialog1.setVisible(true);
 		
-		String result = testCoinSorter.coinSorter.coinCalculator(Integer.parseInt(coinValueTextField.getText()), Integer.parseInt(coinTypeTextField.getText()) );
-		JOptionPane.showMessageDialog(this, result);
-	
 	}
 	
-
+	private boolean validateInput(String input)
+	{
+		try {
+	        Integer num = Integer.valueOf(input);
+	        //System.out.println("is a number");
+	        return true;
+	    } catch (NumberFormatException e) {
+	        // TODO: handle exception
+	        //System.out.println("is not a number");
+	        return false;
+	    }
+	}
 
 }
