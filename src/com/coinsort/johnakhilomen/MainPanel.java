@@ -16,7 +16,7 @@ import javax.swing.JTextField;
 
 public class MainPanel extends JPanel{
 	private Font font = new Font("Verdana", Font.PLAIN, 16);
-	private static FrameWindow coinCalcFrame;
+	private static FrameWindow coinCalcFrame, multcoinCalcFrame;
 	private String[] _buttonNames;
 	public static JLabel _currencyLabel = new JLabel("Currency");
 	public static JLabel _minInputLabel = new JLabel("Min Input");
@@ -112,7 +112,70 @@ public class MainPanel extends JPanel{
 	}
 
 	protected void multipleCoinCalculator() {
-		// TODO Auto-generated method stub
+		
+		var multcoinCalcPanel = new JPanel();
+		multcoinCalcPanel.setLayout(new GridLayout(3,3));
+		JLabel multcoinValue = new JLabel("Enter value: ");
+		multcoinValue.setFont(font);
+		JTextField multcoinValueTextField = new JTextField();
+		multcoinValueTextField.setFont(font);
+		JLabel multcoinType = new JLabel("Enter coin type to exclude: ");
+		multcoinType.setFont(font);
+		JTextField multcoinTypeTextField = new JTextField();
+		multcoinTypeTextField.setFont(font);
+		JButton submit = new JButton("Submit");
+		submit.setFont(font);
+		submit.addActionListener(new ActionListener(){  
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println(testCoinSorter.coinSorter.getCurrency());
+				if(!validateInput(multcoinValueTextField.getText()))
+				{
+					JOptionPane.showMessageDialog(null, "Invalid input for Coin Value - Only integers are allowed!");
+					return;
+				}
+				else if(!validateInput(multcoinTypeTextField.getText()) )
+				{
+					JOptionPane.showMessageDialog(null, "Invalid input for Coin type - Only integers are allowed!");
+					return;
+				}
+				else if (testCoinSorter.coinSorter.getCurrency() == null)
+				{
+					JOptionPane.showMessageDialog(null, "Please set the currency in \n Display Program Configuration menu!");
+					return;
+				}
+				else
+				{
+					var coinSorter = new CoinSorter();
+					String result = coinSorter.multiCoinCalculator(Integer.parseInt(multcoinValueTextField.getText()), Integer.parseInt(multcoinTypeTextField.getText()) );
+					JOptionPane.showMessageDialog(null, result);
+				}
+		
+			}
+		});
+		
+		JButton returnToMainMenu = new JButton("Return To Main Menu");
+		returnToMainMenu.setFont(font);
+		returnToMainMenu.addActionListener(new ActionListener(){  
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				multcoinCalcFrame.setVisible(false);
+				testCoinSorter.mainDialog.setVisible(true);
+			}
+		});
+		
+		multcoinCalcPanel.add(multcoinValue);
+		multcoinCalcPanel.add(multcoinValueTextField);
+		multcoinCalcPanel.add(multcoinType);
+		multcoinCalcPanel.add(multcoinTypeTextField);
+		multcoinCalcPanel.add(returnToMainMenu);
+		multcoinCalcPanel.add(submit);
+		
+		multcoinCalcFrame = new FrameWindow("Multiple Coin Calculator", multcoinCalcPanel);
+		multcoinCalcFrame.setVisible(true);
+		testCoinSorter.mainDialog.setVisible(false);
+		multcoinCalcFrame.setLocationRelativeTo(testCoinSorter.mainDialog);
+	
 		
 	}
 

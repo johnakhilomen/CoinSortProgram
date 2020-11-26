@@ -15,6 +15,12 @@ public class CoinSorter {
 		_currency = currency;
 		_coinList = coinList;
 	}
+	
+	public CoinSorter()
+	{
+		
+	}
+	
 	//setters
 	public void setCurrency(String currency) 
 	{
@@ -72,7 +78,7 @@ public class CoinSorter {
 		  
 		//Integer[] intArr = new Integer[] {200,100,50,30,20,10};
 		Integer[] intArr = new Integer[] {200,100,30,10};
-		toCoins(562, new ArrayList<Integer>(Arrays.asList(intArr)));
+		toCoins(totalValue, new ArrayList<Integer>(Arrays.asList(intArr)));
 		var yy = y;
 		for (int i = 0; i < yy.size(); i++)
 		{
