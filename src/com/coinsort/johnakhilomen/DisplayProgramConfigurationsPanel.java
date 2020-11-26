@@ -17,7 +17,7 @@ public class DisplayProgramConfigurationsPanel extends JPanel{
 	public DisplayProgramConfigurationsPanel(String[] buttonNames)
 	{
 		_buttonNames = buttonNames;
-		setLayout();
+		setLayout(new GridLayout(2,2));
 		setupButtons();
 	}
 
@@ -67,30 +67,28 @@ public class DisplayProgramConfigurationsPanel extends JPanel{
 	}
 
 	protected void setMaxCoinInput() {
-		var oPane = new OptionPaneDialog("Set maximum coin input value", null, true);
-		var dialog = oPane.getDialog();
+		var dialog = new FrameWindow("Set maximum coin input value", null);
 		dialog.setVisible(true);
-		testCoinSorter.coinSorter.setMaxCoinIn(Integer.parseInt(oPane.getInputValue().toString()));
+		String input= JOptionPane.showInputDialog("Index number: ");
+		testCoinSorter.coinSorter.setMaxCoinIn(Integer.parseInt(input));
 		testCoinSorter.mainPanel._maxInputLabel.setText("Maximum input value: "+testCoinSorter.coinSorter.getMaxCoinIn());
 	
 		
 	}
 
 	protected void setMinCoinInput() {
-		var oPane = new OptionPaneDialog("Set minimum coin input value", null, true);
-		var dialog = oPane.getDialog();
+		var dialog = new FrameWindow("Set minimum coin input value", null);
 		dialog.setVisible(true);
-		testCoinSorter.coinSorter.setMinCoinIn(Integer.parseInt(oPane.getInputValue().toString()));
-		testCoinSorter.mainPanel._minInputLabel.setText("Minimum input value: "+testCoinSorter.coinSorter.getMinCoinIn());
+		//testCoinSorter.coinSorter.setMinCoinIn(Integer.parseInt(oPane.getInputValue().toString()));
+		//testCoinSorter.mainPanel._minInputLabel.setText("Minimum input value: "+testCoinSorter.coinSorter.getMinCoinIn());
 		
 	}
 
 	protected void setCurrency() {
-		var oPane = new OptionPaneDialog("Currency", null, true);
-		var dialog = oPane.getDialog();
+		var dialog = new FrameWindow("Currency", null);
 		dialog.setVisible(true);
-		testCoinSorter.coinSorter.setCurrency(oPane.getInputValue().toString());
-		testCoinSorter.mainPanel._currencyLabel.setText("Currency: "+testCoinSorter.coinSorter.getCurrency());
+		//testCoinSorter.coinSorter.setCurrency(oPane.getInputValue().toString());
+		//testCoinSorter.mainPanel._currencyLabel.setText("Currency: "+testCoinSorter.coinSorter.getCurrency());
 	}
 
 	protected void returnToMainMenu() {

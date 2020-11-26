@@ -7,6 +7,7 @@ import java.util.Arrays;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -14,7 +15,7 @@ import javax.swing.JPanel;
 public class testCoinSorter {
 
 	public static MainPanel mainPanel; 
-	public static JDialog mainDialog;
+	public static JFrame mainDialog;
 	public static CoinSorter coinSorter; 
 	public static void main(String[] args) {
 		
@@ -87,8 +88,8 @@ public class testCoinSorter {
 		String[] buttonNames = new String[] {"Coin calculator", "Multiple coin calculators", "Print coin list", "Set details",
 				"Display program configurations", "Quit the program"};
 		mainPanel = new MainPanel(buttonNames);
-		mainDialog = new OptionPaneDialog("Shopping List Program", mainPanel, false).getDialog();
-		mainDialog.show();
+		mainDialog = new FrameWindow("Shopping List Program", mainPanel);
+		mainDialog.setVisible(true);
 		
 		//dialog.dispose();
 		
