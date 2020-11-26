@@ -132,6 +132,7 @@ public class MainPanel extends JPanel{
 		submit.addActionListener(new ActionListener(){  
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				System.out.println(testCoinSorter.coinSorter.getCurrency());
 				if(!validateInput(coinValueTextField.getText()))
 				{
 					JOptionPane.showMessageDialog(null, "Invalid input for Coin Value - Only integers are allowed!");
@@ -140,6 +141,11 @@ public class MainPanel extends JPanel{
 				else if(!validateInput(coinTypeTextField.getText()) )
 				{
 					JOptionPane.showMessageDialog(null, "Invalid input for Coin type - Only integers are allowed!");
+					return;
+				}
+				else if (testCoinSorter.coinSorter.getCurrency() == null)
+				{
+					JOptionPane.showMessageDialog(null, "Please set the currency in \n Display Program Configuration menu!");
 					return;
 				}
 				else

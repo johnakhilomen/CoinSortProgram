@@ -57,8 +57,8 @@ public class CoinSorter {
 	{
 		int numberOfCoins = (int) Math.floor(totalValue / coinType);
 		int numberOfCoinsRemainder = totalValue % coinType;
-		String msg = "A total of "+numberOfCoins +" x " +coinType+"p coins can be exchanged";
-		return numberOfCoinsRemainder == 0 ? msg : msg+", with a remainder of "+numberOfCoinsRemainder+"p";
+		String msg = "A total of "+numberOfCoins +" x " +coinType+ getCurrency()+" coins can be exchanged";
+		return numberOfCoinsRemainder == 0 ? msg : msg+", with a remainder of "+numberOfCoinsRemainder+getCurrency();
 	}
 	
 	public String multiCoinCalculator(int totalValue, int coinTypeToExclude) 

@@ -67,8 +67,6 @@ public class DisplayProgramConfigurationsPanel extends JPanel{
 	}
 
 	protected void setMaxCoinInput() {
-		var dialog = new FrameWindow("Set maximum coin input value", null);
-		dialog.setVisible(true);
 		String input= JOptionPane.showInputDialog("Index number: ");
 		testCoinSorter.coinSorter.setMaxCoinIn(Integer.parseInt(input));
 		testCoinSorter.mainPanel._maxInputLabel.setText("Maximum input value: "+testCoinSorter.coinSorter.getMaxCoinIn());
@@ -77,18 +75,16 @@ public class DisplayProgramConfigurationsPanel extends JPanel{
 	}
 
 	protected void setMinCoinInput() {
-		var dialog = new FrameWindow("Set minimum coin input value", null);
-		dialog.setVisible(true);
-		//testCoinSorter.coinSorter.setMinCoinIn(Integer.parseInt(oPane.getInputValue().toString()));
-		//testCoinSorter.mainPanel._minInputLabel.setText("Minimum input value: "+testCoinSorter.coinSorter.getMinCoinIn());
+		String minInput = JOptionPane.showInputDialog("Enter currency");
+		testCoinSorter.coinSorter.setMinCoinIn(Integer.parseInt(minInput));
+		testCoinSorter.mainPanel._minInputLabel.setText("Minimum input value: "+testCoinSorter.coinSorter.getMinCoinIn());
 		
 	}
 
 	protected void setCurrency() {
-		var dialog = new FrameWindow("Currency", null);
-		dialog.setVisible(true);
-		//testCoinSorter.coinSorter.setCurrency(oPane.getInputValue().toString());
-		//testCoinSorter.mainPanel._currencyLabel.setText("Currency: "+testCoinSorter.coinSorter.getCurrency());
+		String currency = JOptionPane.showInputDialog("Enter currency");
+		testCoinSorter.coinSorter.setCurrency(currency);
+		testCoinSorter.mainPanel._currencyLabel.setText("Currency: "+testCoinSorter.coinSorter.getCurrency());
 	}
 
 	protected void returnToMainMenu() {
