@@ -56,7 +56,12 @@ public class CoinSorter {
 		
 	public String printCoinList()
 	{
-		return "The current coin denominations are in circulation: "+_coinList.toString() ;
+		String str = "";
+		for (int i = 0; i < _coinList.size(); i++)
+		{
+			str += _coinList.get(i) + " ";
+		}
+		return "The current coin denominations are in circulation: "+ str ;
 	}
 	
 	public String coinCalculator(int totalValue, int coinType) 
@@ -64,7 +69,7 @@ public class CoinSorter {
 		int numberOfCoins = (int) Math.floor(totalValue / coinType);
 		int numberOfCoinsRemainder = totalValue % coinType;
 		String msg = "A total of "+numberOfCoins +" x " +coinType+ getCurrency()+" coins can be exchanged";
-		return numberOfCoinsRemainder == 0 ? msg : msg+", with a remainder of "+numberOfCoinsRemainder+getCurrency();
+		return numberOfCoinsRemainder == 0 ? msg : msg+", with a remainder of "+numberOfCoinsRemainder+""+getCurrency();
 	}
 	
 	public String multiCoinCalculator(int totalValue, int coinTypeToExclude) 
@@ -77,8 +82,21 @@ public class CoinSorter {
 		int p10 = 0;
 		  
 		//Integer[] intArr = new Integer[] {200,100,50,30,20,10};
-		Integer[] intArr = new Integer[] {200,100,30,10};
-		toCoins(totalValue, new ArrayList<Integer>(Arrays.asList(intArr)));
+		//Integer[] intArr = new Integer[] {200,100,30,10};
+		for (int i = 0; i < _coinList.size(); i++)
+		{
+			if(_coinList.get(i) == coinTypeToExclude)
+			{
+				_coinList.remove(i);
+				break;
+			}
+			else
+			{
+				continue;
+			}
+		}
+		var newList = _coinList;
+		toCoins(totalValue, newList);
 		var yy = y;
 		for (int i = 0; i < yy.size(); i++)
 		{
@@ -107,8 +125,8 @@ public class CoinSorter {
 		        p10++;
 		      }
 		}
-		return "The coins exchanged are: "+p200+" x 200p, "+p100+" x 100p, "+p50+" x 50p, "+p30+" x 30p, "
-		+p20+" x 20p, "+p10+" x 10p, with a remainder of 2p";
+		return "The coins exchanged are: "+p200+" x 200"+getCurrency()+", "+p100+" x 100"+getCurrency()+", "+p50+" x 50"+getCurrency()+", "+p30+" x 30"+getCurrency()+", "
+		+p20+" x 20"+getCurrency()+", "+p10+" x 10"+getCurrency()+", with a remainder of 2"+getCurrency();
 	}
 	
 	public String displayProgramConfigs()

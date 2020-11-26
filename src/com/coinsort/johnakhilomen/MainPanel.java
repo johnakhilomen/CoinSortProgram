@@ -5,6 +5,8 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -107,8 +109,7 @@ public class MainPanel extends JPanel{
 	}
 
 	protected void printCoinList() {
-		// TODO Auto-generated method stub
-		//_currencyLabel.setText(testCoinSorter.coinSorter.getCurrency());
+		JOptionPane.showMessageDialog(null, testCoinSorter.coinSorter.printCoinList());
 	}
 
 	protected void multipleCoinCalculator() {
@@ -146,7 +147,8 @@ public class MainPanel extends JPanel{
 				}
 				else
 				{
-					var coinSorter = new CoinSorter();
+					testCoinSorter.coinList = new ArrayList<Integer>(Arrays.asList(testCoinSorter.intArr));
+					var coinSorter = new CoinSorter(testCoinSorter.coinSorter.getCurrency(), testCoinSorter.minValue, testCoinSorter.maxValue, testCoinSorter.coinList);
 					String result = coinSorter.multiCoinCalculator(Integer.parseInt(multcoinValueTextField.getText()), Integer.parseInt(multcoinTypeTextField.getText()) );
 					JOptionPane.showMessageDialog(null, result);
 				}
