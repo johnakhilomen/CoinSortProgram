@@ -119,7 +119,7 @@ public class MainPanel extends JPanel{
 		
 		var multcoinCalcPanel = new JPanel();
 		multcoinCalcPanel.setLayout(new GridLayout(3,3));
-		JLabel multcoinValue = new JLabel("Enter value: ");
+		JLabel multcoinValue = new JLabel("Enter value "+testCoinSorter.coinSorter.getCurrency()+": ");
 		multcoinValue.setFont(font);
 		JTextField multcoinValueTextField = new JTextField();
 		multcoinValueTextField.setFont(font);
@@ -187,7 +187,7 @@ public class MainPanel extends JPanel{
 	protected void coinCalculator() {
 		var coinCalcPanel = new JPanel();
 		coinCalcPanel.setLayout(new GridLayout(3,3));
-		JLabel coinValue = new JLabel("Enter value: ");
+		JLabel coinValue = new JLabel("Enter value "+testCoinSorter.coinSorter.getCurrency()+": ");
 		coinValue.setFont(font);
 		JTextField coinValueTextField = new JTextField();
 		coinValueTextField.setFont(font);

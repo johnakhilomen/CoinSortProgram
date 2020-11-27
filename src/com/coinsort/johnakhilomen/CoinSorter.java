@@ -104,6 +104,12 @@ public class CoinSorter {
 			}
 		}
 		var newList = _coinList;
+		if(getCurrency()=="£")
+		{
+			totalValue = ConvertFromPoundToPenny(totalValue);
+			setCurrency("P");
+			
+		}
 		toCoins(totalValue, newList);
 		var yy = y;
 		for (int i = 0; i < yy.size(); i++)
