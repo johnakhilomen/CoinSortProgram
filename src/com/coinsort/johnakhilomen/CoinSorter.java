@@ -71,8 +71,16 @@ public class CoinSorter {
 		if(getCurrency()=="£")
 		{
 			totalValue = ConvertFromPoundToPenny(totalValue);
-			setCurrency("P");
-			
+			setCurrency("P");	
+		}
+		if (getCurrency()=="P" && (coinType == 2 || coinType == 1))
+		{
+			int numberOfCoins = (int) Math.floor(totalValue / (coinType*100));
+			int numberOfCoinsRemainder = totalValue % (coinType*100);
+			System.out.println(numberOfCoinsRemainder);
+			setCurrency("£");
+			String msg = "A total of "+numberOfCoins +" x " +coinType+ getCurrency()+" coins can be exchanged";
+			return numberOfCoinsRemainder == 0 ? msg : msg+", with a remainder of "+numberOfCoinsRemainder+"P";			
 		}
 		int numberOfCoins = (int) Math.floor(totalValue / coinType);
 		int numberOfCoinsRemainder = totalValue % coinType;

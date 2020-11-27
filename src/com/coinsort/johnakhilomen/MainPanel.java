@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -193,8 +194,10 @@ public class MainPanel extends JPanel{
 		coinValueTextField.setFont(font);
 		JLabel coinType = new JLabel("Enter coin type: ");
 		coinType.setFont(font);
-		JTextField coinTypeTextField = new JTextField();
-		coinTypeTextField.setFont(font);
+		//JTextField coinTypeTextField = new JTextField();
+		//coinTypeTextField.setFont(font);
+		var inputDenomination = new JComboBox(testCoinSorter.inputDenominations); 
+		inputDenomination.setFont(font);
 		JButton submit = new JButton("Submit");
 		submit.setFont(font);
 		submit.addActionListener(new ActionListener(){  
@@ -206,11 +209,11 @@ public class MainPanel extends JPanel{
 					JOptionPane.showMessageDialog(null, "Invalid input for Coin Value - Only integers are allowed!");
 					return;
 				}
-				else if(!validateInput(coinTypeTextField.getText()) )
+				/*else if(!validateInput(inputDenomination.getSelectedItem().toString()) )
 				{
 					JOptionPane.showMessageDialog(null, "Invalid input for Coin type - Only integers are allowed!");
 					return;
-				}
+				}*/
 				else if (testCoinSorter.coinSorter.getCurrency() == null)
 				{
 					JOptionPane.showMessageDialog(null, "Please set the currency in \n Display Program Configuration menu!");
@@ -218,9 +221,10 @@ public class MainPanel extends JPanel{
 				}
 				else
 				{
+					var inputDenominationStr = inputDenomination.getSelectedItem().toString().substring(1);
 					testCoinSorter.coinList = new ArrayList<Integer>(Arrays.asList(testCoinSorter.intArr));
 					var coinSorter = new CoinSorter(testCoinSorter.coinSorter.getCurrency(), testCoinSorter.minValue, testCoinSorter.maxValue, testCoinSorter.coinList);
-					String result = coinSorter.coinCalculator(Integer.parseInt(coinValueTextField.getText()), Integer.parseInt(coinTypeTextField.getText()) );
+					String result = coinSorter.coinCalculator(Integer.parseInt(coinValueTextField.getText()), Integer.parseInt(inputDenominationStr) );
 					JOptionPane.showMessageDialog(null, result);
 				}
 		
@@ -240,7 +244,8 @@ public class MainPanel extends JPanel{
 		coinCalcPanel.add(coinValue);
 		coinCalcPanel.add(coinValueTextField);
 		coinCalcPanel.add(coinType);
-		coinCalcPanel.add(coinTypeTextField);
+		//coinCalcPanel.add(coinTypeTextField);
+		coinCalcPanel.add(inputDenomination);
 		coinCalcPanel.add(returnToMainMenu);
 		coinCalcPanel.add(submit);
 		
