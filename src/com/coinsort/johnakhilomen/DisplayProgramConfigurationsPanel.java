@@ -3,8 +3,11 @@ package com.coinsort.johnakhilomen;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -12,6 +15,7 @@ import javax.swing.JPanel;
 
 public class DisplayProgramConfigurationsPanel extends JPanel{
 
+	private JComboBox currencyCombo; 
 	private String[] _buttonNames;
 	//public static String currency;
 	public DisplayProgramConfigurationsPanel(String[] buttonNames)
@@ -82,9 +86,26 @@ public class DisplayProgramConfigurationsPanel extends JPanel{
 	}
 
 	protected void setCurrency() {
-		String currency = JOptionPane.showInputDialog("Enter currency");
-		testCoinSorter.coinSorter.setCurrency(currency);
-		testCoinSorter.mainPanel._currencyLabel.setText("Currency: "+testCoinSorter.coinSorter.getCurrency());
+		String currencies[] = {"£", "P"}; 
+		currencyCombo = new JComboBox(currencies); 
+		currencyCombo.addItemListener(new ItemListener(){
+
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				 if (e.getSource() == currencyCombo) { 
+					  
+					 testCoinSorter.coinSorter.setCurrency(currencyCombo.getSelectedItem().toString());
+					 testCoinSorter.mainPanel._currencyLabel.setText("Currency: "+testCoinSorter.coinSorter.getCurrency());
+						
+			        } 
+				
+			}  
+					
+			}); 
+		JOptionPane.showMessageDialog(null, currencyCombo, "Set Currency", JOptionPane.INFORMATION_MESSAGE);
+		//String currency = JOptionPane.showInputDialog("Enter currency");
+		//testCoinSorter.coinSorter.setCurrency(currency);
+		//testCoinSorter.mainPanel._currencyLabel.setText("Currency: "+testCoinSorter.coinSorter.getCurrency());
 	}
 
 	protected void returnToMainMenu() {

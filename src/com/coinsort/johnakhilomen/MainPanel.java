@@ -20,9 +20,9 @@ public class MainPanel extends JPanel{
 	private Font font = new Font("Verdana", Font.PLAIN, 16);
 	private static FrameWindow coinCalcFrame, multcoinCalcFrame;
 	private String[] _buttonNames;
-	public static JLabel _currencyLabel = new JLabel("Currency");
-	public static JLabel _minInputLabel = new JLabel("Min Input");
-	public static JLabel _maxInputLabel = new JLabel("Max Input");
+	public static JLabel _currencyLabel = new JLabel();
+	public static JLabel _minInputLabel = new JLabel();
+	public static JLabel _maxInputLabel = new JLabel();
 	public static JFrame subMenudialog;
 	public MainPanel(String[] buttonNames)
 	{
@@ -34,8 +34,11 @@ public class MainPanel extends JPanel{
 
 	private void setupLabels()
 	{
+		_currencyLabel.setText("Currecncy: "+testCoinSorter.coinSorter.getCurrency());
 		_currencyLabel.setForeground(Color.red);
+		_minInputLabel.setText("Min Input: "+testCoinSorter.coinSorter.getMinCoinIn());
 		_minInputLabel.setForeground(Color.red);
+		_maxInputLabel.setText("Max Input: "+testCoinSorter.coinSorter.getMaxCoinIn());
 		_maxInputLabel.setForeground(Color.red);
 		add(_currencyLabel);
 		add(_minInputLabel);

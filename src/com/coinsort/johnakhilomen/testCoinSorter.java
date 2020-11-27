@@ -24,15 +24,12 @@ public class testCoinSorter {
 	public static void main(String[] args) {
 		String[] buttonNames = new String[] {"Coin calculator", "Multiple coin calculators", "Print coin list", "Set details",
 				"Display program configurations", "Quit the program"};
-		
 		coinList = new ArrayList<Integer>(Arrays.asList(intArr));
-		coinSorter = new CoinSorter("P", 0, 10000, coinList);
+		coinSorter = new CoinSorter("£", 0, 10000, coinList);
 		mainPanel = new MainPanel(buttonNames);
 		mainDialog = new FrameWindow("Shopping List Program", mainPanel);
 		mainDialog.setVisible(true);
 		
 	}
-
-	
 	
 }

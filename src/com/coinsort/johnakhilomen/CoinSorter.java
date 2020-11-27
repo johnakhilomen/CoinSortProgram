@@ -13,6 +13,8 @@ public class CoinSorter {
 	public CoinSorter(String currency, int minCoinIn, int maxCoinIn, ArrayList<Integer> coinList)
 	{
 		_currency = currency;
+		_minCoinIn = minCoinIn;
+		_maxCoinIn = maxCoinIn;
 		_coinList = coinList;
 	}
 	
@@ -66,6 +68,12 @@ public class CoinSorter {
 	
 	public String coinCalculator(int totalValue, int coinType) 
 	{
+		if(getCurrency()=="£")
+		{
+			totalValue = ConvertFromPoundToPenny(totalValue);
+			setCurrency("P");
+			
+		}
 		int numberOfCoins = (int) Math.floor(totalValue / coinType);
 		int numberOfCoinsRemainder = totalValue % coinType;
 		String msg = "A total of "+numberOfCoins +" x " +coinType+ getCurrency()+" coins can be exchanged";
