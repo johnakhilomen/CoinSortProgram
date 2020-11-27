@@ -218,7 +218,9 @@ public class MainPanel extends JPanel{
 				}
 				else
 				{
-					String result = testCoinSorter.coinSorter.coinCalculator(Integer.parseInt(coinValueTextField.getText()), Integer.parseInt(coinTypeTextField.getText()) );
+					testCoinSorter.coinList = new ArrayList<Integer>(Arrays.asList(testCoinSorter.intArr));
+					var coinSorter = new CoinSorter(testCoinSorter.coinSorter.getCurrency(), testCoinSorter.minValue, testCoinSorter.maxValue, testCoinSorter.coinList);
+					String result = coinSorter.coinCalculator(Integer.parseInt(coinValueTextField.getText()), Integer.parseInt(coinTypeTextField.getText()) );
 					JOptionPane.showMessageDialog(null, result);
 				}
 		
