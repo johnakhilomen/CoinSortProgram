@@ -134,8 +134,21 @@ public class MainPanel extends JPanel{
 		submit.addActionListener(new ActionListener(){  
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println(testCoinSorter.coinSorter.getCurrency());
-				if(!validateInput(multcoinValueTextField.getText()))
+				//System.out.println(testCoinSorter.coinSorter.getCurrency());
+				
+				if ( !validateInputValueRange(Integer.parseInt(multcoinValueTextField.getText())))
+				{
+					JOptionPane.showMessageDialog(null, "Invalid input - Value must be in the range of Min and Max values set!");
+					return;
+				}
+				else if(!validateInput(multcoinValueTextField.getText()))
+				{
+					JOptionPane.showMessageDialog(null, "Invalid input for Coin Value - Only integers are allowed!");
+					return;
+				}
+				
+				
+				/*if(!validateInput(multcoinValueTextField.getText()))
 				{
 					JOptionPane.showMessageDialog(null, "Invalid input for Coin Value - Only integers are allowed!");
 					return;
