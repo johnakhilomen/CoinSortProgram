@@ -160,7 +160,7 @@ public class MainPanel extends JPanel{
 					testCoinSorter.coinList = new ArrayList<String>(Arrays.asList(testCoinSorter.inputDenominationsMultiplecoins));
 					var coinSorter = new CoinSorter(testCoinSorter.coinSorter.getCurrency(), testCoinSorter.minValue, testCoinSorter.maxValue, testCoinSorter.coinList);
 					String result = coinSorter.multiCoinCalculator(Integer.parseInt(multcoinValueTextField.getText()), Integer.parseInt(inputDenominationStr) );
-					JOptionPane.showMessageDialog(null, result);
+					JOptionPane.showMessageDialog(null, result, "Multiple Coin Calculator", JOptionPane.INFORMATION_MESSAGE);
 				}
 		
 			}
@@ -227,7 +227,8 @@ public class MainPanel extends JPanel{
 					var inputDenominationStr = inputDenomination.getSelectedItem().toString().substring(1);
 					var coinSorter = new CoinSorter(testCoinSorter.coinSorter.getCurrency(), testCoinSorter.minValue, testCoinSorter.maxValue, testCoinSorter.coinList);
 					String result = coinSorter.coinCalculator(Integer.parseInt(coinValueTextField.getText()), Integer.parseInt(inputDenominationStr) );
-					JOptionPane.showMessageDialog(null, result);
+					JOptionPane.showMessageDialog(null, result, "Coin Calculator", JOptionPane.INFORMATION_MESSAGE);
+
 				}
 		
 			}
