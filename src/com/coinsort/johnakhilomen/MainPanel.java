@@ -146,18 +146,6 @@ public class MainPanel extends JPanel{
 					JOptionPane.showMessageDialog(null, "Invalid input for Coin Value - Only integers are allowed!");
 					return;
 				}
-				
-				
-				/*if(!validateInput(multcoinValueTextField.getText()))
-				{
-					JOptionPane.showMessageDialog(null, "Invalid input for Coin Value - Only integers are allowed!");
-					return;
-				}
-				/*else if(!validateInput(multcoinTypeTextField.getText()) )
-				{
-					JOptionPane.showMessageDialog(null, "Invalid input for Coin type - Only integers are allowed!");
-					return;
-				}*/
 				else if (testCoinSorter.coinSorter.getCurrency() == null)
 				{
 					JOptionPane.showMessageDialog(null, "Please set the currency in \n Display Program Configuration menu!");

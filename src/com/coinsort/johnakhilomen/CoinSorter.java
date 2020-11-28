@@ -153,7 +153,8 @@ public class CoinSorter {
 		      }
 		}
 		
-		String msg = "The coins exchanged are: "+p200+" x 200"+getCurrency()+", "+p100+" x 100"+getCurrency()+", "+p50+" x 50"+getCurrency()+", "+p30+" x 30"+getCurrency()+", "
+		String msg = "The coins exchanged are: "+p200+" x 200 "+getCurrency()+" ( or "+p200+" x 2£) , "+p100+" x 100"+getCurrency()+
+				" ( or "+p100+" x 1£) , "+p50+" x 50"+getCurrency()+", "+p30+" x 30"+getCurrency()+", "
 				+p20+" x 20"+getCurrency()+", "+p10+" x 10"+getCurrency();
 		return remainderValue == 0 ? msg : msg+", with a remainder of "+remainderValue+"P";
 		
