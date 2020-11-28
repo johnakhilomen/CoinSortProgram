@@ -100,16 +100,18 @@ public class MainPanel extends JPanel{
 	}
 
 	protected void displayProgramConfigurations() {
+		String info = "Min Value :" + testCoinSorter.minValue +"\n"
+				+"Max Value : "+ testCoinSorter.maxValue+"\n"
+				+"Currency :" + testCoinSorter.coinSorter.getCurrency();
+		JOptionPane.showMessageDialog(null, info, "Display Program Configuration", JOptionPane.INFORMATION_MESSAGE);
+	}
+
+	protected void setDetails() {
 		String[] subMenuButtonNames = new String[] {"Set currency", "Set minimum coin input value", "Set maximum coin input value",
 		"Return to main menu"};
 		subMenudialog = new FrameWindow("Set Details Sub-Menu", new DisplayProgramConfigurationsPanel(subMenuButtonNames));
 		testCoinSorter.mainDialog.setVisible(false);
-		subMenudialog.setVisible(true);
-	}
-
-	protected void setDetails() {
-		// TODO Auto-generated method stub
-		
+		subMenudialog.setVisible(true);	
 	}
 
 	protected void printCoinList() {
