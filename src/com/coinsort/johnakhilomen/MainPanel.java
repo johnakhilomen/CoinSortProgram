@@ -196,10 +196,7 @@ public class MainPanel extends JPanel{
 		coinValueTextField.setFont(font);
 		JLabel coinType = new JLabel("Enter coin type: ");
 		coinType.setFont(font);
-		//JTextField coinTypeTextField = new JTextField();
-		//coinTypeTextField.setFont(font);
-		var inputDenomination = new inputDenominationCombo().getJComoBox(testCoinSorter.inputDenominations); /*new JComboBox<Object>(testCoinSorter.inputDenominations); 
-		inputDenomination.setFont(font);*/
+		var inputDenomination = new inputDenominationCombo().getJComoBox(testCoinSorter.inputDenominations); 
 		JButton submit = new JButton("Submit");
 		submit.setFont(font);
 		submit.addActionListener(new ActionListener(){  
@@ -224,7 +221,6 @@ public class MainPanel extends JPanel{
 				else
 				{
 					var inputDenominationStr = inputDenomination.getSelectedItem().toString().substring(1);
-					//testCoinSorter.coinList = new ArrayList<Integer>(Arrays.asList(testCoinSorter.intArr));
 					var coinSorter = new CoinSorter(testCoinSorter.coinSorter.getCurrency(), testCoinSorter.minValue, testCoinSorter.maxValue, testCoinSorter.coinList);
 					String result = coinSorter.coinCalculator(Integer.parseInt(coinValueTextField.getText()), Integer.parseInt(inputDenominationStr) );
 					JOptionPane.showMessageDialog(null, result);
@@ -246,7 +242,6 @@ public class MainPanel extends JPanel{
 		coinCalcPanel.add(coinValue);
 		coinCalcPanel.add(coinValueTextField);
 		coinCalcPanel.add(coinType);
-		//coinCalcPanel.add(coinTypeTextField);
 		coinCalcPanel.add(inputDenomination);
 		coinCalcPanel.add(returnToMainMenu);
 		coinCalcPanel.add(submit);
