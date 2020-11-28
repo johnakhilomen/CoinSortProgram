@@ -3,14 +3,15 @@ package com.coinsort.johnakhilomen;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+
 public class CoinSorter {
 	
 	private String _currency;
 	private int _minCoinIn;
 	private int _maxCoinIn;
-	private ArrayList<Integer> _coinList;
+	private ArrayList<String> _coinList;
 	
-	public CoinSorter(String currency, int minCoinIn, int maxCoinIn, ArrayList<Integer> coinList)
+	public CoinSorter(String currency, int minCoinIn, int maxCoinIn, ArrayList<String> coinList)
 	{
 		_currency = currency;
 		_minCoinIn = minCoinIn;
@@ -58,12 +59,7 @@ public class CoinSorter {
 		
 	public String printCoinList()
 	{
-		String str = "";
-		for (int i = 0; i < _coinList.size(); i++)
-		{
-			str += _coinList.get(i) + " ";
-		}
-		return "The current coin denominations are in circulation: "+ str ;
+		return "The current coin denominations are in circulation: "+String.join(", ", _coinList);
 	}
 	
 	public String coinCalculator(int totalValue, int coinType) 
@@ -96,11 +92,18 @@ public class CoinSorter {
 		  
 		//Integer[] intArr = new Integer[] {200,100,50,30,20,10};
 		//Integer[] intArr = new Integer[] {200,100,30,10};
+		ArrayList<Integer> newList = new ArrayList<Integer>();
 		for (int i = 0; i < _coinList.size(); i++)
 		{
-			if(_coinList.get(i) == coinTypeToExclude)
+			int coinT = Integer.parseInt(_coinList.get(i).substring(1));
+			newList.add(coinT);
+		}
+		
+		for (int i = 0; i < newList.size(); i++)
+		{
+			if(newList.get(i) == coinTypeToExclude)
 			{
-				_coinList.remove(i);
+				newList.remove(i);
 				break;
 			}
 			else
@@ -108,15 +111,20 @@ public class CoinSorter {
 				continue;
 			}
 		}
-		var newList = _coinList;
+		//var newList = _coinList;
 		if(getCurrency()=="£")
 		{
 			totalValue = ConvertFromPoundToPenny(totalValue);
-			setCurrency("P");
-			
+			setCurrency("P");	
 		}
+		
+		
 		toCoins(totalValue, newList);
 		var yy = y;
+		for (int i = 0; i < yy.size(); i++)
+		{
+			System.out.println(i);
+		}
 		for (int i = 0; i < yy.size(); i++)
 		{
 			if(yy.get(i)==200)
@@ -144,8 +152,11 @@ public class CoinSorter {
 		        p10++;
 		      }
 		}
-		return "The coins exchanged are: "+p200+" x 200"+getCurrency()+", "+p100+" x 100"+getCurrency()+", "+p50+" x 50"+getCurrency()+", "+p30+" x 30"+getCurrency()+", "
-		+p20+" x 20"+getCurrency()+", "+p10+" x 10"+getCurrency()+", with a remainder of 2"+getCurrency();
+		
+		String msg = "The coins exchanged are: "+p200+" x 200"+getCurrency()+", "+p100+" x 100"+getCurrency()+", "+p50+" x 50"+getCurrency()+", "+p30+" x 30"+getCurrency()+", "
+				+p20+" x 20"+getCurrency()+", "+p10+" x 10"+getCurrency();
+		return remainderValue == 0 ? msg : msg+", with a remainder of "+remainderValue+"P";
+		
 	}
 	
 	public String displayProgramConfigs()
@@ -154,7 +165,7 @@ public class CoinSorter {
 	}
 
 	public ArrayList<Integer> y = new ArrayList<Integer>();
-
+	public int remainderValue = 0;
 	public ArrayList<Integer> toCoins(int n, ArrayList<Integer> arr)
 	{
 		if(n == 0 || arr.size() == 0) 
@@ -174,6 +185,7 @@ public class CoinSorter {
 		{
 		 if(n < 10) 
 		 {
+			remainderValue = n;
 			return arr;
 		 }
 		arr.remove(0);

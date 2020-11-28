@@ -18,7 +18,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class MainPanel extends JPanel{
-	private Font font = new Font("Verdana", Font.PLAIN, 16);
+	public static Font font = new Font("Verdana", Font.PLAIN, 16);
 	private static FrameWindow coinCalcFrame, multcoinCalcFrame;
 	private String[] _buttonNames;
 	public static JLabel _currencyLabel = new JLabel();
@@ -126,8 +126,9 @@ public class MainPanel extends JPanel{
 		multcoinValueTextField.setFont(font);
 		JLabel multcoinType = new JLabel("Enter coin type to exclude: ");
 		multcoinType.setFont(font);
-		JTextField multcoinTypeTextField = new JTextField();
-		multcoinTypeTextField.setFont(font);
+		//JTextField multcoinTypeTextField = new JTextField();
+		//multcoinTypeTextField.setFont(font);
+		var inputDenomination = new inputDenominationCombo().getJComoBox(testCoinSorter.inputDenominationsMultiplecoins);
 		JButton submit = new JButton("Submit");
 		submit.setFont(font);
 		submit.addActionListener(new ActionListener(){  
@@ -139,11 +140,11 @@ public class MainPanel extends JPanel{
 					JOptionPane.showMessageDialog(null, "Invalid input for Coin Value - Only integers are allowed!");
 					return;
 				}
-				else if(!validateInput(multcoinTypeTextField.getText()) )
+				/*else if(!validateInput(multcoinTypeTextField.getText()) )
 				{
 					JOptionPane.showMessageDialog(null, "Invalid input for Coin type - Only integers are allowed!");
 					return;
-				}
+				}*/
 				else if (testCoinSorter.coinSorter.getCurrency() == null)
 				{
 					JOptionPane.showMessageDialog(null, "Please set the currency in \n Display Program Configuration menu!");
@@ -151,9 +152,10 @@ public class MainPanel extends JPanel{
 				}
 				else
 				{
-					testCoinSorter.coinList = new ArrayList<Integer>(Arrays.asList(testCoinSorter.intArr));
+					var inputDenominationStr = inputDenomination.getSelectedItem().toString().substring(1);
+					testCoinSorter.coinList = new ArrayList<String>(Arrays.asList(testCoinSorter.inputDenominationsMultiplecoins));
 					var coinSorter = new CoinSorter(testCoinSorter.coinSorter.getCurrency(), testCoinSorter.minValue, testCoinSorter.maxValue, testCoinSorter.coinList);
-					String result = coinSorter.multiCoinCalculator(Integer.parseInt(multcoinValueTextField.getText()), Integer.parseInt(multcoinTypeTextField.getText()) );
+					String result = coinSorter.multiCoinCalculator(Integer.parseInt(multcoinValueTextField.getText()), Integer.parseInt(inputDenominationStr) );
 					JOptionPane.showMessageDialog(null, result);
 				}
 		
@@ -173,7 +175,7 @@ public class MainPanel extends JPanel{
 		multcoinCalcPanel.add(multcoinValue);
 		multcoinCalcPanel.add(multcoinValueTextField);
 		multcoinCalcPanel.add(multcoinType);
-		multcoinCalcPanel.add(multcoinTypeTextField);
+		multcoinCalcPanel.add(inputDenomination);
 		multcoinCalcPanel.add(returnToMainMenu);
 		multcoinCalcPanel.add(submit);
 		
@@ -196,8 +198,8 @@ public class MainPanel extends JPanel{
 		coinType.setFont(font);
 		//JTextField coinTypeTextField = new JTextField();
 		//coinTypeTextField.setFont(font);
-		var inputDenomination = new JComboBox(testCoinSorter.inputDenominations); 
-		inputDenomination.setFont(font);
+		var inputDenomination = new inputDenominationCombo().getJComoBox(testCoinSorter.inputDenominations); /*new JComboBox<Object>(testCoinSorter.inputDenominations); 
+		inputDenomination.setFont(font);*/
 		JButton submit = new JButton("Submit");
 		submit.setFont(font);
 		submit.addActionListener(new ActionListener(){  
@@ -222,7 +224,7 @@ public class MainPanel extends JPanel{
 				else
 				{
 					var inputDenominationStr = inputDenomination.getSelectedItem().toString().substring(1);
-					testCoinSorter.coinList = new ArrayList<Integer>(Arrays.asList(testCoinSorter.intArr));
+					//testCoinSorter.coinList = new ArrayList<Integer>(Arrays.asList(testCoinSorter.intArr));
 					var coinSorter = new CoinSorter(testCoinSorter.coinSorter.getCurrency(), testCoinSorter.minValue, testCoinSorter.maxValue, testCoinSorter.coinList);
 					String result = coinSorter.coinCalculator(Integer.parseInt(coinValueTextField.getText()), Integer.parseInt(inputDenominationStr) );
 					JOptionPane.showMessageDialog(null, result);
