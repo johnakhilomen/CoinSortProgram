@@ -206,16 +206,16 @@ public class MainPanel extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.out.println(testCoinSorter.coinSorter.getCurrency());
-				if(!validateInput(coinValueTextField.getText()))
+				if ( !validateInputValueRange(Integer.parseInt(coinValueTextField.getText())))
+				{
+					JOptionPane.showMessageDialog(null, "Invalid input - Value must be in the range of Min and Max values set!");
+					return;
+				}
+				else if(!validateInput(coinValueTextField.getText()))
 				{
 					JOptionPane.showMessageDialog(null, "Invalid input for Coin Value - Only integers are allowed!");
 					return;
 				}
-				/*else if(!validateInput(inputDenomination.getSelectedItem().toString()) )
-				{
-					JOptionPane.showMessageDialog(null, "Invalid input for Coin type - Only integers are allowed!");
-					return;
-				}*/
 				else if (testCoinSorter.coinSorter.getCurrency() == null)
 				{
 					JOptionPane.showMessageDialog(null, "Please set the currency in \n Display Program Configuration menu!");
@@ -271,4 +271,12 @@ public class MainPanel extends JPanel{
 	    }
 	}
 
+	private boolean validateInputValueRange(int value)
+	{
+		if ( !(value >= testCoinSorter.coinSorter.getMinCoinIn() && (value <= testCoinSorter.coinSorter.getMaxCoinIn()) ) )
+		{
+			return false;
+		}	
+		return true;
+	}
 }
