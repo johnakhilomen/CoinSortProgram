@@ -10,6 +10,7 @@ public class CoinSorter {
 	private int _minCoinIn;
 	private int _maxCoinIn;
 	private ArrayList<String> _coinList;
+	public ArrayList<Integer> createMultiCoinList = new ArrayList<Integer>();
 	
 	public CoinSorter(String currency, int minCoinIn, int maxCoinIn, ArrayList<String> coinList)
 	{
@@ -89,9 +90,7 @@ public class CoinSorter {
 		int p30 = 0;
 		int p20 = 0;
 		int p10 = 0;
-		  
-		//Integer[] intArr = new Integer[] {200,100,50,30,20,10};
-		//Integer[] intArr = new Integer[] {200,100,30,10};
+		
 		ArrayList<Integer> newList = new ArrayList<Integer>();
 		for (int i = 0; i < _coinList.size(); i++)
 		{
@@ -111,7 +110,6 @@ public class CoinSorter {
 				continue;
 			}
 		}
-		//var newList = _coinList;
 		if(getCurrency()=="£")
 		{
 			totalValue = ConvertFromPoundToPenny(totalValue);
@@ -119,8 +117,8 @@ public class CoinSorter {
 		}
 		
 		
-		toCoins(totalValue, newList);
-		var yy = y;
+		processMultiCoinList(totalValue, newList);
+		var yy = createMultiCoinList;
 		for (int i = 0; i < yy.size(); i++)
 		{
 			System.out.println(i);
@@ -165,9 +163,8 @@ public class CoinSorter {
 		return "";
 	}
 
-	public ArrayList<Integer> y = new ArrayList<Integer>();
 	public int remainderValue = 0;
-	public ArrayList<Integer> toCoins(int n, ArrayList<Integer> arr)
+	public ArrayList<Integer> processMultiCoinList(int n, ArrayList<Integer> arr)
 	{
 		if(n == 0 || arr.size() == 0) 
 		{
@@ -178,8 +175,8 @@ public class CoinSorter {
 		  if(n >= arr.get(0)) 
 		  {
 		  int t = n - arr.get(0);
-		  y.add(arr.get(0));
-		  return toCoins(t,arr);
+		  createMultiCoinList.add(arr.get(0));
+		  return processMultiCoinList(t,arr);
 		  }
 		  
 		else 
@@ -190,7 +187,7 @@ public class CoinSorter {
 			return arr;
 		 }
 		arr.remove(0);
-		return toCoins(n,arr);
+		return processMultiCoinList(n,arr);
 		
 		} 
 	

@@ -130,6 +130,7 @@ public class MainPanel extends JPanel{
 		multcoinType.setFont(font);
 		//JTextField multcoinTypeTextField = new JTextField();
 		//multcoinTypeTextField.setFont(font);
+		
 		var inputDenomination = new inputDenominationCombo().getJComoBox(testCoinSorter.inputDenominationsMultiplecoins);
 		JButton submit = new JButton("Submit");
 		submit.setFont(font);
