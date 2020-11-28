@@ -262,11 +262,8 @@ public class MainPanel extends JPanel{
 	{
 		try {
 	        Integer num = Integer.valueOf(input);
-	        //System.out.println("is a number");
 	        return true;
 	    } catch (NumberFormatException e) {
-	        // TODO: handle exception
-	        //System.out.println("is not a number");
 	        return false;
 	    }
 	}
