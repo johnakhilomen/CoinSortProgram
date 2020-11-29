@@ -21,30 +21,30 @@ public class MainPanel extends JPanel{
 	public static Font font = new Font("Verdana", Font.PLAIN, 16);
 	private static FrameWindow coinCalcFrame, multcoinCalcFrame;
 	private String[] _buttonNames;
-	public static JLabel _currencyLabel = new JLabel();
+	/*public static JLabel _currencyLabel = new JLabel();
 	public static JLabel _minInputLabel = new JLabel();
-	public static JLabel _maxInputLabel = new JLabel();
+	public static JLabel _maxInputLabel = new JLabel();*/
 	public static JFrame subMenudialog;
 	public MainPanel(String[] buttonNames)
 	{
 		_buttonNames = buttonNames;
 		setLayout(new GridLayout(3,3));
-		setupLabels();
+		//setupLabels();
 		setupButtons();
 	}
 
-	private void setupLabels()
+	/*private void setupLabels()
 	{
-		_currencyLabel.setText("Currecncy: "+testCoinSorter.coinSorter.getCurrency());
+		_currencyLabel.setText("Currecncy: "+TestCoinSorter.coinSorter.getCurrency());
 		_currencyLabel.setForeground(Color.red);
-		_minInputLabel.setText("Min Input: "+testCoinSorter.coinSorter.getMinCoinIn());
+		_minInputLabel.setText("Min Input: "+TestCoinSorter.coinSorter.getMinCoinIn());
 		_minInputLabel.setForeground(Color.red);
-		_maxInputLabel.setText("Max Input: "+testCoinSorter.coinSorter.getMaxCoinIn());
+		_maxInputLabel.setText("Max Input: "+TestCoinSorter.coinSorter.getMaxCoinIn());
 		_maxInputLabel.setForeground(Color.red);
 		add(_currencyLabel);
 		add(_minInputLabel);
 		add(_maxInputLabel);
-	}
+	}*/
 	
 	public void setupButtons()
 	{
@@ -61,7 +61,7 @@ public class MainPanel extends JPanel{
 						coinCalculator();
 						
 					}
-					else if(e.getActionCommand() == "Multiple coin calculators")
+					else if(e.getActionCommand() == "Multiple coin calculator")
 					{
 						System.out.println("Multiple coin calculators...");
 						multipleCoinCalculator();
@@ -80,7 +80,6 @@ public class MainPanel extends JPanel{
 					} 
 					else if(e.getActionCommand() == "Display program configurations")
 					{
-						//System.out.println("Display program configurations");
 						displayProgramConfigurations();
 					}
 					else if(e.getActionCommand() == "Quit the program")
@@ -100,9 +99,9 @@ public class MainPanel extends JPanel{
 	}
 
 	protected void displayProgramConfigurations() {
-		String info = "Min Value :" + testCoinSorter.minValue +"\n"
-				+"Max Value : "+ testCoinSorter.maxValue+"\n"
-				+"Currency :" + testCoinSorter.coinSorter.getCurrency();
+		String info = "Min Value :" + TestCoinSorter.coinSorter.getMinCoinIn() +"\n"
+				+"Max Value : "+ TestCoinSorter.coinSorter.getMaxCoinIn()+"\n"
+				+"Currency :" + TestCoinSorter.coinSorter.getCurrency();
 		JOptionPane.showMessageDialog(null, info, "Display Program Configuration", JOptionPane.INFORMATION_MESSAGE);
 	}
 
@@ -110,28 +109,26 @@ public class MainPanel extends JPanel{
 		String[] subMenuButtonNames = new String[] {"Set currency", "Set minimum coin input value", "Set maximum coin input value",
 		"Return to main menu"};
 		subMenudialog = new FrameWindow("Set Details Sub-Menu", new DisplayProgramConfigurationsPanel(subMenuButtonNames));
-		testCoinSorter.mainDialog.setVisible(false);
+		TestCoinSorter.mainDialog.setVisible(false);
 		subMenudialog.setVisible(true);	
 	}
 
 	protected void printCoinList() {
-		JOptionPane.showMessageDialog(null, testCoinSorter.coinSorter.printCoinList());
+		JOptionPane.showMessageDialog(null, TestCoinSorter.coinSorter.printCoinList());
 	}
 
 	protected void multipleCoinCalculator() {
 		
 		var multcoinCalcPanel = new JPanel();
 		multcoinCalcPanel.setLayout(new GridLayout(3,3));
-		JLabel multcoinValue = new JLabel("Enter value "+testCoinSorter.coinSorter.getCurrency()+": ");
+		JLabel multcoinValue = new JLabel("Enter value "+TestCoinSorter.coinSorter.getCurrency()+": ");
 		multcoinValue.setFont(font);
 		JTextField multcoinValueTextField = new JTextField();
 		multcoinValueTextField.setFont(font);
 		JLabel multcoinType = new JLabel("Enter coin type to exclude: ");
 		multcoinType.setFont(font);
-		//JTextField multcoinTypeTextField = new JTextField();
-		//multcoinTypeTextField.setFont(font);
 		
-		var inputDenomination = new inputDenominationCombo().getJComoBox(testCoinSorter.inputDenominationsMultiplecoins);
+		var inputDenomination = new InputDenominationCombo().getJComoBox(TestCoinSorter.inputDenominationsMultiplecoins);
 		JButton submit = new JButton("Submit");
 		submit.setFont(font);
 		submit.addActionListener(new ActionListener(){  
@@ -149,7 +146,7 @@ public class MainPanel extends JPanel{
 					JOptionPane.showMessageDialog(null, "Invalid input for Coin Value - Only integers are allowed!");
 					return;
 				}
-				else if (testCoinSorter.coinSorter.getCurrency() == null)
+				else if (TestCoinSorter.coinSorter.getCurrency() == null)
 				{
 					JOptionPane.showMessageDialog(null, "Please set the currency in \n Display Program Configuration menu!");
 					return;
@@ -157,8 +154,8 @@ public class MainPanel extends JPanel{
 				else
 				{
 					var inputDenominationStr = inputDenomination.getSelectedItem().toString().substring(1);
-					testCoinSorter.coinList = new ArrayList<String>(Arrays.asList(testCoinSorter.inputDenominationsMultiplecoins));
-					var coinSorter = new CoinSorter(testCoinSorter.coinSorter.getCurrency(), testCoinSorter.minValue, testCoinSorter.maxValue, testCoinSorter.coinList);
+					TestCoinSorter.coinList = new ArrayList<String>(Arrays.asList(TestCoinSorter.inputDenominationsMultiplecoins));
+					var coinSorter = new CoinSorter(TestCoinSorter.coinSorter.getCurrency(), TestCoinSorter.minValue, TestCoinSorter.maxValue, TestCoinSorter.coinList);
 					String result = coinSorter.multiCoinCalculator(Integer.parseInt(multcoinValueTextField.getText()), Integer.parseInt(inputDenominationStr) );
 					JOptionPane.showMessageDialog(null, result, "Multiple Coin Calculator", JOptionPane.INFORMATION_MESSAGE);
 				}
@@ -172,7 +169,7 @@ public class MainPanel extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				multcoinCalcFrame.setVisible(false);
-				testCoinSorter.mainDialog.setVisible(true);
+				TestCoinSorter.mainDialog.setVisible(true);
 			}
 		});
 		
@@ -185,8 +182,8 @@ public class MainPanel extends JPanel{
 		
 		multcoinCalcFrame = new FrameWindow("Multiple Coin Calculator", multcoinCalcPanel);
 		multcoinCalcFrame.setVisible(true);
-		testCoinSorter.mainDialog.setVisible(false);
-		multcoinCalcFrame.setLocationRelativeTo(testCoinSorter.mainDialog);
+		TestCoinSorter.mainDialog.setVisible(false);
+		multcoinCalcFrame.setLocationRelativeTo(TestCoinSorter.mainDialog);
 	
 		
 	}
@@ -194,19 +191,19 @@ public class MainPanel extends JPanel{
 	protected void coinCalculator() {
 		var coinCalcPanel = new JPanel();
 		coinCalcPanel.setLayout(new GridLayout(3,3));
-		JLabel coinValue = new JLabel("Enter value "+testCoinSorter.coinSorter.getCurrency()+": ");
+		JLabel coinValue = new JLabel("Enter value "+TestCoinSorter.coinSorter.getCurrency()+": ");
 		coinValue.setFont(font);
 		JTextField coinValueTextField = new JTextField();
 		coinValueTextField.setFont(font);
-		JLabel coinType = new JLabel("Enter coin type: ");
+		JLabel coinType = new JLabel("Select coin type: ");
 		coinType.setFont(font);
-		var inputDenomination = new inputDenominationCombo().getJComoBox(testCoinSorter.inputDenominations); 
+		var inputDenomination = new InputDenominationCombo().getJComoBox(TestCoinSorter.inputDenominations); 
 		JButton submit = new JButton("Submit");
 		submit.setFont(font);
 		submit.addActionListener(new ActionListener(){  
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println(testCoinSorter.coinSorter.getCurrency());
+				System.out.println(TestCoinSorter.coinSorter.getCurrency());
 				if ( !validateInputValueRange(Integer.parseInt(coinValueTextField.getText())))
 				{
 					JOptionPane.showMessageDialog(null, "Invalid input - Value must be in the range of Min and Max values set!");
@@ -217,7 +214,7 @@ public class MainPanel extends JPanel{
 					JOptionPane.showMessageDialog(null, "Invalid input for Coin Value - Only integers are allowed!");
 					return;
 				}
-				else if (testCoinSorter.coinSorter.getCurrency() == null)
+				else if (TestCoinSorter.coinSorter.getCurrency() == null)
 				{
 					JOptionPane.showMessageDialog(null, "Please set the currency in \n Display Program Configuration menu!");
 					return;
@@ -225,7 +222,7 @@ public class MainPanel extends JPanel{
 				else
 				{
 					var inputDenominationStr = inputDenomination.getSelectedItem().toString().substring(1);
-					var coinSorter = new CoinSorter(testCoinSorter.coinSorter.getCurrency(), testCoinSorter.minValue, testCoinSorter.maxValue, testCoinSorter.coinList);
+					var coinSorter = new CoinSorter(TestCoinSorter.coinSorter.getCurrency(), TestCoinSorter.minValue, TestCoinSorter.maxValue, TestCoinSorter.coinList);
 					String result = coinSorter.coinCalculator(Integer.parseInt(coinValueTextField.getText()), Integer.parseInt(inputDenominationStr) );
 					JOptionPane.showMessageDialog(null, result, "Coin Calculator", JOptionPane.INFORMATION_MESSAGE);
 
@@ -240,7 +237,7 @@ public class MainPanel extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				coinCalcFrame.setVisible(false);
-				testCoinSorter.mainDialog.setVisible(true);
+				TestCoinSorter.mainDialog.setVisible(true);
 			}
 		});
 		
@@ -253,8 +250,8 @@ public class MainPanel extends JPanel{
 		
 		coinCalcFrame = new FrameWindow("Coin Calculator", coinCalcPanel);
 		coinCalcFrame.setVisible(true);
-		testCoinSorter.mainDialog.setVisible(false);
-		coinCalcFrame.setLocationRelativeTo(testCoinSorter.mainDialog);
+		TestCoinSorter.mainDialog.setVisible(false);
+		coinCalcFrame.setLocationRelativeTo(TestCoinSorter.mainDialog);
 		
 	}
 	
@@ -270,7 +267,7 @@ public class MainPanel extends JPanel{
 
 	private boolean validateInputValueRange(int value)
 	{
-		if ( !(value >= testCoinSorter.coinSorter.getMinCoinIn() && (value <= testCoinSorter.coinSorter.getMaxCoinIn()) ) )
+		if ( !(value >= TestCoinSorter.coinSorter.getMinCoinIn() && (value <= TestCoinSorter.coinSorter.getMaxCoinIn()) ) )
 		{
 			return false;
 		}	

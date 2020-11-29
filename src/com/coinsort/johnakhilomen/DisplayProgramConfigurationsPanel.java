@@ -17,7 +17,6 @@ public class DisplayProgramConfigurationsPanel extends JPanel{
 
 	private JComboBox currencyCombo; 
 	private String[] _buttonNames;
-	//public static String currency;
 	public DisplayProgramConfigurationsPanel(String[] buttonNames)
 	{
 		_buttonNames = buttonNames;
@@ -38,13 +37,8 @@ public class DisplayProgramConfigurationsPanel extends JPanel{
 			button.addActionListener(new ActionListener(){  
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					if(e.getActionCommand() == "Coin calculator")
-					{
-						System.out.println("Coin calculator...");
-						//String item = JOptionPane.showInputDialog("Item name: ");
-						
-					}
-					else if(e.getActionCommand() == "Set currency")
+					
+					if(e.getActionCommand() == "Set currency")
 					{
 						setCurrency();
 						
@@ -72,16 +66,14 @@ public class DisplayProgramConfigurationsPanel extends JPanel{
 
 	protected void setMaxCoinInput() {
 		String input= JOptionPane.showInputDialog("Index number: ");
-		testCoinSorter.coinSorter.setMaxCoinIn(Integer.parseInt(input));
-		testCoinSorter.mainPanel._maxInputLabel.setText("Maximum input value: "+testCoinSorter.coinSorter.getMaxCoinIn());
-	
+		TestCoinSorter.coinSorter.setMaxCoinIn(Integer.parseInt(input));
+		
 		
 	}
 
 	protected void setMinCoinInput() {
 		String minInput = JOptionPane.showInputDialog("Enter currency");
-		testCoinSorter.coinSorter.setMinCoinIn(Integer.parseInt(minInput));
-		testCoinSorter.mainPanel._minInputLabel.setText("Minimum input value: "+testCoinSorter.coinSorter.getMinCoinIn());
+		TestCoinSorter.coinSorter.setMinCoinIn(Integer.parseInt(minInput));
 		
 	}
 
@@ -94,8 +86,7 @@ public class DisplayProgramConfigurationsPanel extends JPanel{
 			public void itemStateChanged(ItemEvent e) {
 				 if (e.getSource() == currencyCombo) { 
 					  
-					 testCoinSorter.coinSorter.setCurrency(currencyCombo.getSelectedItem().toString());
-					 testCoinSorter.mainPanel._currencyLabel.setText("Currency: "+testCoinSorter.coinSorter.getCurrency());
+					 TestCoinSorter.coinSorter.setCurrency(currencyCombo.getSelectedItem().toString());
 						
 			        } 
 				
@@ -103,14 +94,12 @@ public class DisplayProgramConfigurationsPanel extends JPanel{
 					
 			}); 
 		JOptionPane.showMessageDialog(null, currencyCombo, "Set Currency", JOptionPane.INFORMATION_MESSAGE);
-		//String currency = JOptionPane.showInputDialog("Enter currency");
-		//testCoinSorter.coinSorter.setCurrency(currency);
-		//testCoinSorter.mainPanel._currencyLabel.setText("Currency: "+testCoinSorter.coinSorter.getCurrency());
+		
 	}
 
 	protected void returnToMainMenu() {
 		MainPanel.subMenudialog.setVisible(false);
-		testCoinSorter.mainDialog.setVisible(true);
+		TestCoinSorter.mainDialog.setVisible(true);
 	}
 	
 }

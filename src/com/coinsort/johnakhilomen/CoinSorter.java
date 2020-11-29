@@ -38,7 +38,10 @@ public class CoinSorter {
 	{
 		_maxCoinIn = maxCoinIn;
 	}
-		
+	public void setCoinList(ArrayList<String> coinList) 
+	{
+		_coinList = coinList;
+	}	
 	//getters
 	public String getCurrency() 
 	{
@@ -52,7 +55,11 @@ public class CoinSorter {
 	{
 		return _maxCoinIn;
 	}
-		
+	public ArrayList<String> getCoinList()
+	{
+		return _coinList;
+	}
+	
 	public int ConvertFromPoundToPenny(int pound)
 	{
 		return pound * 100;
@@ -79,7 +86,7 @@ public class CoinSorter {
 			setCurrency("£");		
 		}
 		String msg = "A total of "+numberOfCoins +" x " +coinType+ getCurrency()+" coins can be exchanged";
-		return numberOfCoinsRemainder == 0 ? msg : msg+", with a remainder of "+numberOfCoinsRemainder+"P";
+		return numberOfCoinsRemainder == 0 ? msg : msg+", with a remainder of "+"P"+numberOfCoinsRemainder;
 	}
 	
 	public String multiCoinCalculator(int totalValue, int coinTypeToExclude) 
