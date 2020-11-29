@@ -21,31 +21,15 @@ public class MainPanel extends JPanel{
 	public static Font font = new Font("Verdana", Font.PLAIN, 16);
 	private static FrameWindow coinCalcFrame, multcoinCalcFrame;
 	private String[] _buttonNames;
-	/*public static JLabel _currencyLabel = new JLabel();
-	public static JLabel _minInputLabel = new JLabel();
-	public static JLabel _maxInputLabel = new JLabel();*/
+	
 	public static JFrame subMenudialog;
 	public MainPanel(String[] buttonNames)
 	{
 		_buttonNames = buttonNames;
 		setLayout(new GridLayout(3,3));
-		//setupLabels();
 		setupButtons();
 	}
 
-	/*private void setupLabels()
-	{
-		_currencyLabel.setText("Currecncy: "+TestCoinSorter.coinSorter.getCurrency());
-		_currencyLabel.setForeground(Color.red);
-		_minInputLabel.setText("Min Input: "+TestCoinSorter.coinSorter.getMinCoinIn());
-		_minInputLabel.setForeground(Color.red);
-		_maxInputLabel.setText("Max Input: "+TestCoinSorter.coinSorter.getMaxCoinIn());
-		_maxInputLabel.setForeground(Color.red);
-		add(_currencyLabel);
-		add(_minInputLabel);
-		add(_maxInputLabel);
-	}*/
-	
 	public void setupButtons()
 	{
 		
@@ -134,7 +118,6 @@ public class MainPanel extends JPanel{
 		submit.addActionListener(new ActionListener(){  
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//System.out.println(testCoinSorter.coinSorter.getCurrency());
 				
 				if ( !validateInputValueRange(Integer.parseInt(multcoinValueTextField.getText())))
 				{

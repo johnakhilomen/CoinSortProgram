@@ -30,7 +30,7 @@ public class TestCoinSorter {
 		mainPanel = new MainPanel(buttonNames);
 		mainDialog = new FrameWindow("Coin sorting program", mainPanel);
 		mainDialog.setVisible(true);
-		
+		System.out.print(Math.floor(9.1));
 	}
 	
 }
