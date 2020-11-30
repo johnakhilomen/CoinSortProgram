@@ -78,7 +78,6 @@ public class DisplayProgramConfigurationsPanel extends JPanel{
 	protected void setMaxCoinInput() {
 		//Prompt user to enter a value for maximum value
 		String maxInput= JOptionPane.showInputDialog("Maximum input value: ");
-		System.out.println(maxInput);
 		//Lets make sure the result from JOptionPane isn't empty first
 		if(!maxInput.isEmpty())
 		{

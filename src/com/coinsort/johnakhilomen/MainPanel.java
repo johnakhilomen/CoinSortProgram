@@ -106,7 +106,7 @@ public class MainPanel extends JPanel{
 
 	//Displays coin lost 
 	protected void printCoinList() {
-		JOptionPane.showMessageDialog(null, TestCoinSorter.coinSorter.printCoinList());
+		JOptionPane.showMessageDialog(null, TestCoinSorter.coinSorter.printCoinList(), "Print coin list", JOptionPane.INFORMATION_MESSAGE);
 	}
 
 	//Multiple coin calculator UI
