@@ -17,6 +17,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+//A class to create main panel. The main panel is used to display the main menu on the main window
 public class MainPanel extends JPanel{
 	public static Font font = new Font("Verdana", Font.PLAIN, 16);
 	private static FrameWindow coinCalcFrame, multcoinCalcFrame;
@@ -78,10 +79,12 @@ public class MainPanel extends JPanel{
 		
 	}
 
+	//Exits application
 	protected void quitTheProgram() {
 	System.exit(0);	
 	}
 
+	//Displays a concatenated string of the configuration settings for the program
 	protected void displayProgramConfigurations() {
 		String info = "Min Value :" + TestCoinSorter.coinSorter.getMinCoinIn() +"\n"
 				+"Max Value : "+ TestCoinSorter.coinSorter.getMaxCoinIn()+"\n"
@@ -89,18 +92,24 @@ public class MainPanel extends JPanel{
 		JOptionPane.showMessageDialog(null, info, "Display Program Configuration", JOptionPane.INFORMATION_MESSAGE);
 	}
 
+	//UI setup for set-details sub menu
 	protected void setDetails() {
 		String[] subMenuButtonNames = new String[] {"Set currency", "Set minimum coin input value", "Set maximum coin input value",
 		"Return to main menu"};
+		//Instantiate a new frame window and initialize it with a new DisplayProgramConfigurationsPanel window
 		subMenudialog = new FrameWindow("Set Details Sub-Menu", new DisplayProgramConfigurationsPanel(subMenuButtonNames));
+		//We hide the main window
 		TestCoinSorter.mainDialog.setVisible(false);
+		//show DisplayProgramConfigurationsPanel window
 		subMenudialog.setVisible(true);	
 	}
 
+	//Displays coin lost 
 	protected void printCoinList() {
 		JOptionPane.showMessageDialog(null, TestCoinSorter.coinSorter.printCoinList());
 	}
 
+	//Multiple coin calculator UI
 	protected void multipleCoinCalculator() {
 		
 		var multcoinCalcPanel = new JPanel();
@@ -171,6 +180,7 @@ public class MainPanel extends JPanel{
 		
 	}
 
+	//Coin calculator UI setup
 	protected void coinCalculator() {
 		var coinCalcPanel = new JPanel();
 		coinCalcPanel.setLayout(new GridLayout(3,3));
@@ -189,16 +199,19 @@ public class MainPanel extends JPanel{
 				System.out.println(TestCoinSorter.coinSorter.getCurrency());
 				if ( !validateInputValueRange(Integer.parseInt(coinValueTextField.getText())))
 				{
+					//Shows a message if user enters a value that's not in the range or minimum and maximum values
 					JOptionPane.showMessageDialog(null, "Invalid input - Value must be in the range of Min and Max values set!");
 					return;
 				}
 				else if(!validateInput(coinValueTextField.getText()))
 				{
+					//Shows a message if user enters a value that's not integer
 					JOptionPane.showMessageDialog(null, "Invalid input for Coin Value - Only integers are allowed!");
 					return;
 				}
 				else if (TestCoinSorter.coinSorter.getCurrency() == null)
 				{
+					//Shows a message if no currency is set
 					JOptionPane.showMessageDialog(null, "Please set the currency in \n Display Program Configuration menu!");
 					return;
 				}
@@ -238,22 +251,29 @@ public class MainPanel extends JPanel{
 		
 	}
 	
+	//Validate input for integer
 	private boolean validateInput(String input)
 	{
 		try {
+			//return true if the input is integer
 	        Integer num = Integer.valueOf(input);
 	        return true;
 	    } catch (NumberFormatException e) {
+	    	//Display exception message if input is not integer and return false;
+	    	JOptionPane.showMessageDialog(null, "Exception thrown", "Exception", JOptionPane.INFORMATION_MESSAGE);
 	        return false;
 	    }
 	}
 
+	//Validate that input is in the range of minimum and maximum values
 	private boolean validateInputValueRange(int value)
 	{
 		if ( !(value >= TestCoinSorter.coinSorter.getMinCoinIn() && (value <= TestCoinSorter.coinSorter.getMaxCoinIn()) ) )
 		{
+			//returns false if input isn't in the range of minimum and maximum values
 			return false;
-		}	
+		}
+		//returns true if input is in the range of minimum and maximum values
 		return true;
 	}
 }
